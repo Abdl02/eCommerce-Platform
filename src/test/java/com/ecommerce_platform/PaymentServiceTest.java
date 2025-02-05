@@ -11,6 +11,8 @@ import com.ecommerce_platform.repository.repos.PaymentRepository;
 import com.ecommerce_platform.service.PaymentService;
 import com.ecommerce_platform.infra.util.EmailUtil;
 import com.ecommerce_platform.infra.util.OrderUtil;
+import com.ecommerce_platform.service.payment.PaymentHandler;
+import com.ecommerce_platform.service.payment.PaymentHandlerFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -42,6 +44,10 @@ class PaymentServiceTest {
     @Mock
     private EmailUtil emailUtil;
 
+    @Mock
+    private PaymentHandlerFactory paymentHandlerFactory;
+
+
     private Order order;
     private User user;
 
@@ -51,6 +57,9 @@ class PaymentServiceTest {
 
         user = new User(1L, "john_doe", "password", "user@example.com", null);
         order = new Order(1L, user, LocalDateTime.now(), OrderStatus.PENDING, BigDecimal.valueOf(100), null);
+
+        PaymentHandler mockHandler = mock(PaymentHandler.class);
+        when(paymentHandlerFactory.getHandler(anyString())).thenReturn(mockHandler);
     }
 
     @Test

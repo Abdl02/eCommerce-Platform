@@ -38,4 +38,4 @@ MERGE INTO cart (id, user_id, product_id, quantity)
 -- Insert payments
 MERGE INTO payments (id, order_id, amount, payment_method)
     KEY (id)
-    VALUES (1, 1, 1700.00, 'Credit Card');
+    VALUES (1, 1, 1700.00, 'PAYPAL');
