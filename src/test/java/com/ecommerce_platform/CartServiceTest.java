@@ -48,7 +48,7 @@ class CartServiceTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
+            MockitoAnnotations.openMocks(this); // initialize the mock
 
         user = new User(1L, "john_doe", "password123", "john.doe@example.com", null);
         product = new Product(1L, "Laptop", "Gaming Laptop", BigDecimal.valueOf(1000), 10);

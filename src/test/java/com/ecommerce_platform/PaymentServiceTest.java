@@ -53,7 +53,7 @@ class PaymentServiceTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
+        MockitoAnnotations.openMocks(this);  // initialize the mock
 
         user = new User(1L, "john_doe", "password", "user@example.com", null);
         order = new Order(1L, user, LocalDateTime.now(), OrderStatus.PENDING, BigDecimal.valueOf(100), null);

@@ -32,7 +32,7 @@ class UserServiceTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
+        MockitoAnnotations.openMocks(this);  // initialize the mock
         user = new User(1L, "john_doe", "password123", "john.doe@example.com", null);
     }
 
