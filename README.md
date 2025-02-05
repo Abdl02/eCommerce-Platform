@@ -69,6 +69,18 @@ This project embraces **clean code** practices and follows the **SOLID** design 
 ```
 
 ---
+## How They Work Together
+
+This project follows a well-structured, layered architecture where each component plays a distinct role. Here’s how the key parts work together:
+
+1. **Controller:** Receives an HTTP request (e.g., `POST /api/products`) and routes it to the appropriate service.
+2. **Request Object:** The incoming request payload is mapped to a Data Transfer Object (DTO), like `ProductRequest`, to ensure structured data handling.
+3. **Service:** The controller passes the DTO to the service, which contains the core business logic for processing the request.
+4. **Mapper:** The service may use a mapper to convert the DTO into an entity, ensuring separation between external-facing and internal data models.
+5. **Repository:** The service calls the repository, which abstracts data access and interacts with the database.
+6. **Entity:** The repository saves or retrieves entities from the database, representing the persistent data model.
+7. **Response Object:** The service maps the retrieved or processed entity to a response DTO using the mapper.
+8. **Controller:** The response DTO is sent back to the client as the final output.
 
 ## API Endpoints
 The application exposes the following RESTful endpoints:
