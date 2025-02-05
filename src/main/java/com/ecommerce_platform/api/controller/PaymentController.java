@@ -12,10 +12,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("/api/payments")
 @RequiredArgsConstructor
+@Tag(name = "Payment Processing", description = "Endpoints for processing and managing payments.")
 public class PaymentController {
     private final PaymentService paymentService;
 
     @PostMapping("/process")
+    @Operation(summary = "Process a payment", description = "Processes a payment for the given order ID and amount.")
     public ResponseEntity<String> processPayment(@RequestBody PaymentRequest request) {
         String message = paymentService.processPayment(request.orderId(), request.amount(), request.paymentMethod());
         return ResponseEntity.ok(message);

@@ -20,12 +20,25 @@ public class WebSecurityConfigurer {
     public SecurityFilterChain filterChain(final HttpSecurity http) throws Exception {
 
         final String[] authWhitelist = {
-                "/swagger-ui/**", "/v3/api-docs/**", "/db-console/**", "/api/auth/**"
+                // Swagger and H2 Console
+                "/swagger-ui/**",
+                "/v3/api-docs/**",
+                "/db-console/**",
+
+                // Auth endpoints
+                "/api/auth/**",
+
+                // User, Product, Cart, Order, Payment endpoints
+                "/api/users/**",
+                "/api/products/**",
+                "/api/carts/**",
+                "/api/orders/**",
+                "/api/payments/**"
         };
 
         http
                 .cors(withDefaults())
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/db-console/**", "/swagger-ui/**", "/v3/api-docs/**"))
+                .csrf(AbstractHttpConfigurer::disable)  // Disable CSRF globally if using POST requests without CSRF token
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
                 .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.sameOrigin())) // For H2 console
                 .authorizeHttpRequests(auth -> auth

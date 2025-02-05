@@ -16,10 +16,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/carts")
 @RequiredArgsConstructor
+@Tag(name = "Cart Management", description = "Endpoints to manage products within a user's cart.")
 public class CartController {
     private final CartService cartService;
 
     @PostMapping("/add")
+    @Operation(summary = "Add a product to the cart", description = "Adds a specified product and quantity to the user's cart.")
     public ResponseEntity<CartResponse> addProductToCart(
             @RequestParam Long userId,
             @RequestParam Long productId,
@@ -30,6 +32,7 @@ public class CartController {
     }
 
     @PutMapping("/update")
+    @Operation(summary = "Update product quantity in the cart", description = "Updates the quantity of a specific product in the user's cart.")
     public ResponseEntity<CartResponse> updateProductQuantity(
             @RequestParam Long userId,
             @Valid @RequestBody CartUpdateRequest request
@@ -39,6 +42,7 @@ public class CartController {
     }
 
     @DeleteMapping("/remove")
+    @Operation(summary = "Remove a product from the cart", description = "Removes a product from the user's cart.")
     public ResponseEntity<String> removeProductFromCart(
             @RequestParam Long userId,
             @RequestParam Long productId
@@ -48,6 +52,7 @@ public class CartController {
     }
 
     @GetMapping("/items")
+    @Operation(summary = "Get cart items", description = "Retrieves all products currently in the user's cart.")
     public ResponseEntity<List<CartResponse>> getCartItemsForUser(@RequestParam Long userId) {
         List<CartResponse> responses = cartService.getCartItemsForUser(userId);
         return ResponseEntity.ok(responses);
