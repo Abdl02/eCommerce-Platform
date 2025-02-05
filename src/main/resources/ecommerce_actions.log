@@ -34,3 +34,6 @@
 2025-02-04T14:07:32.250823100 | Failed registration attempt: Username john_doe already exists
 2025-02-04T15:04:05.534624900 | Successfully registered user: john_doe
 2025-02-04T15:04:05.571041400 | Failed registration attempt: Username john_doe already exists
+2025-02-05T03:59:00.824782700 | Failed registration attempt: Username john_doe already exists
+2025-02-05T03:59:58.580671700 | Successfully registered user: qwqwq
+2025-02-05T04:02:34.152195500 | Retrieved user with ID: 1 and Username: john_doe
