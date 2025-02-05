@@ -1,5 +1,6 @@
 package com.ecommerce_platform.api.controller;
 
+import com.ecommerce_platform.api.dto.request.LoginRequest;
 import com.ecommerce_platform.api.dto.request.RegisterRequest;
 import com.ecommerce_platform.api.dto.response.UserResponse;
 import com.ecommerce_platform.service.AuthService;
@@ -23,5 +24,10 @@ public class AuthController {
     public ResponseEntity<UserResponse> registerUser(@RequestBody @Valid RegisterRequest request) {
         UserResponse response = authService.registerUser(request);
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> loginUser(@RequestBody @Valid LoginRequest request) {
+        return ResponseEntity.ok("Login successful");
     }
 }
