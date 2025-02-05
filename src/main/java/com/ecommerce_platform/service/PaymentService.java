@@ -1,5 +1,6 @@
 package com.ecommerce_platform.service;
 
+import com.ecommerce_platform.api.dto.request.PaymentRequest;
 import com.ecommerce_platform.repository.entity.Order;
 import com.ecommerce_platform.repository.entity.OrderStatus;
 import com.ecommerce_platform.repository.entity.Payment;
@@ -10,6 +11,8 @@ import com.ecommerce_platform.repository.repos.PaymentRepository;
 import com.ecommerce_platform.infra.util.EmailUtil;
 import com.ecommerce_platform.infra.util.LoggerUtil;
 import com.ecommerce_platform.infra.util.OrderUtil;
+import com.ecommerce_platform.service.payment.PaymentHandler;
+import com.ecommerce_platform.service.payment.PaymentHandlerFactory;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,6 +26,7 @@ import java.time.LocalDateTime;
 public class PaymentService {
     private final PaymentRepository paymentRepository;
     private final OrderRepository orderRepository;
+    private final PaymentHandlerFactory paymentHandlerFactory;
     private final EmailUtil emailUtil;
     private final OrderUtil orderUtil;
 
@@ -36,6 +40,11 @@ public class PaymentService {
         validatePaymentAmount(order, amount);
 
         Payment payment = new Payment(null, order, amount, LocalDateTime.now(), paymentMethod);
+
+        // Dynamically fetch the right payment handler based on the method
+        PaymentHandler paymentHandler = paymentHandlerFactory.getHandler(paymentMethod);
+        paymentHandler.processPayment(new PaymentRequest(orderId, amount, paymentMethod), payment);
+
         paymentRepository.save(payment);
 
         orderUtil.updateOrderStatus(order, OrderStatus.CONFIRMED);
