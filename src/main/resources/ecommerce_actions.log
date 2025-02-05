@@ -1,0 +1,36 @@
+2025-02-03T12:22:33.391162300 | Created product with ID: 1, Name: Laptop
+2025-02-03T12:22:33.415166 | Retrieved 1 products from the database.
+2025-02-03T12:31:24.200369400 | Successfully registered user: john_doe
+2025-02-03T12:31:24.231337 | Failed registration attempt: Username john_doe already exists
+2025-02-03T12:39:33.214660300 | Added product ID 1 to cart for user ID 1
+2025-02-03T12:49:26.175491700 | Added product ID 1 to cart for user ID 1
+2025-02-03T12:49:35.142854500 | Added product ID 1 to cart for user ID 1
+2025-02-03T12:49:44.284780200 | Successfully registered user: john_doe
+2025-02-03T12:49:44.315829800 | Failed registration attempt: Username john_doe already exists
+2025-02-03T12:49:55.318606700 | Created product with ID: 1, Name: Laptop
+2025-02-03T12:49:55.345619100 | Retrieved 1 products from the database.
+2025-02-03T12:54:45.901977300 | Retrieved user with ID: 1 and Username: john_doe
+2025-02-03T12:54:45.912975100 | Deleted user with ID: 1
+2025-02-03T12:54:45.927975 | Updated email for user ID: 1 to new.email@example.com
+2025-02-03T12:54:45.931977500 | Attempted to delete non-existent user with ID: 1
+2025-02-03T13:34:18.501004500 | Retrieved user with ID: 1 and Username: john_doe
+2025-02-03T13:34:18.511998800 | Deleted user with ID: 1
+2025-02-03T13:34:18.525999600 | Updated email for user ID: 1 to new.email@example.com
+2025-02-03T13:34:18.531001100 | Attempted to delete non-existent user with ID: 1
+2025-02-03T13:34:25.954811400 | Created product with ID: 1, Name: Laptop
+2025-02-03T13:34:25.980814300 | Retrieved 1 products from the database.
+2025-02-03T13:34:31.948622800 | Added product ID 1 to cart for user ID 1
+2025-02-03T13:34:36.906622200 | Successfully registered user: john_doe
+2025-02-03T13:34:36.941624200 | Failed registration attempt: Username john_doe already exists
+2025-02-03T13:49:10.098386100 | Retrieved user with ID: 1 and Username: john_doe
+2025-02-03T13:49:10.107388800 | Deleted user with ID: 1
+2025-02-03T13:49:10.122383600 | Updated email for user ID: 1 to new.email@example.com
+2025-02-03T13:49:10.126383600 | Attempted to delete non-existent user with ID: 1
+2025-02-03T13:49:18.364134600 | Created product with ID: 1, Name: Laptop
+2025-02-03T13:49:18.389663100 | Retrieved 1 products from the database.
+2025-02-03T13:49:31.563893200 | Added product ID 1 to cart for user ID 1
+2025-02-03T13:49:35.965733 | Successfully registered user: john_doe
+2025-02-03T13:49:35.996759400 | Failed registration attempt: Username john_doe already exists2025-02-04T14:07:32.214029900 | Successfully registered user: john_doe
+2025-02-04T14:07:32.250823100 | Failed registration attempt: Username john_doe already exists
+2025-02-04T15:04:05.534624900 | Successfully registered user: john_doe
+2025-02-04T15:04:05.571041400 | Failed registration attempt: Username john_doe already exists

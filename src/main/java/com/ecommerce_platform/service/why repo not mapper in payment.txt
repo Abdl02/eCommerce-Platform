@@ -1,0 +1,39 @@
+
+/**
+ * In the **payment processing flow**, using the **repository directly** without a mapper is acceptable and actually **recommended** in this case because of the following reasons:
+ *
+ * ---
+ *
+ * ### **When Mappers Are Typically Used:**
+ * 1. **Converting between entities and DTOs:**
+ *    If you have complex logic involving **DTOs and entities (e.g., request-response transformations)**, mappers like **MapStruct** are beneficial.
+ *
+ * 2. **Minimizing boilerplate mapping:**
+ *    Mappers are effective in larger scenarios where manual mappings can make the code verbose.
+ *
+ * ---
+ *
+ * ### **Why We Don’t Need a Mapper in the Payment Module:**
+ * 1. **Minimal mapping logic:**
+ *    The **Payment entity** directly maps to the information needed in the database, and there’s **no need for complex conversions** between DTOs and entities.
+ *
+ * 2. **Repositories suffice for simple persistence operations:**
+ *    In this scenario, the **PaymentRepository** is mainly used to **save a new payment** or **fetch orders**. There’s no **business-specific transformation** logic, so it’s fine to **bypass the mapper layer**.
+ *
+ * 3. **Efficiency in this context:**
+ *    Since the interaction is straightforward (storing payment records, updating order statuses), using the repository **directly reduces overhead** and keeps the logic **concise**.
+ *
+ * ---
+ *
+ * ### **When You Would Need a Mapper in Payments:**
+ * - If you need to **transform payment-related responses** into custom API responses (e.g., sending a detailed `PaymentResponse` DTO).
+ * - If the `PaymentRequest` structure **significantly differs** from the `Payment` entity structure.
+ *
+ * ---
+ *
+ * ### **Final Decision:**
+ * **In our current use case, directly using the repository is better.**
+ * ✅ **No need for a mapper** unless we plan to **return a custom response like `PaymentResponse` DTO** or **transform other objects.**
+ *
+ * Would you like me to proceed with enhancing this flow further, or focus on unit testing next?
+ */
