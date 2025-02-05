@@ -1,4 +1,4 @@
-# eCommerce Platform - Full Stack Spring Boot Application
+# eCommerce Platform - Spring Boot Application
 
 ## Overview
 The **eCommerce Platform** is a robust, scalable, and extensible web-based application designed to handle core e-commerce functionalities such as user management, product catalog, cart management, order processing, and payment handling.
