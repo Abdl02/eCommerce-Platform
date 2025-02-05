@@ -7,6 +7,23 @@ import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
+/**
+ * Represents a user in the e-commerce platform.
+ * <p>
+ * Relationships:
+ * - Many-to-Many with Role: A user can have multiple roles.
+ * <p>
+ * Annotations:
+ * @Entity marks this as a persistent entity.
+ * @Table(name = "users") specifies the table name.
+ * @ManyToMany uses EAGER fetching because roles are critical for security purposes.
+ * <p>
+ * Why EAGER fetching?
+ * - User roles are essential for authorization and security checks, so they are fetched immediately.
+ * <p>
+ *  Why @JoinTable?
+ * - Manages the relationship between users and roles using a join table named `user_roles`.
+ */
 @Entity
 @Table(name = "users")
 @Data
