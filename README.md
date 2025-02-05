@@ -1,170 +1,198 @@
-# eCommerce Platform Project
+# eCommerce Platform - Full Stack Spring Boot Application
 
-## **Project Overview**
-The eCommerce Platform project is a fully functional online shopping system built using **Spring Boot**, **JPA**, **MapStruct**, and various key design patterns. It provides essential features for managing products, users, orders, carts, and payments while ensuring scalability and extensibility.
+## Overview
+The **eCommerce Platform** is a robust, scalable, and extensible web-based application designed to handle core e-commerce functionalities such as user management, product catalog, cart management, order processing, and payment handling.
 
-## **Key Features**
-- **User Management:** Registration, authentication, and user profile management.
+This project was developed using **Spring Boot**, adhering to **clean code principles**, **SOLID design**, and Java **best practices**. The application is modular, clean, and ready for extension, making it suitable for developers aiming to modify or enhance it in the future.
+
+---
+
+## Features
+- **User Authentication:** Register and login functionality with security.
 - **Product Management:** CRUD operations for products.
-- **Cart Management:** Add, update, and remove items in the cart.
-- **Order Processing:** Create and track customer orders.
-- **Payment Integration:** Process payments and validate payment amounts.
-- **Swagger API Documentation:** Automatically generated API documentation using OpenAPI.
+- **Cart Management:** Add, update, and remove items from the cart.
+- **Order Processing:** Create, view, and manage orders.
+- **Payment Processing:** Simulated payment service using different strategies.
+- **Global Exception Handling:** Custom exceptions with meaningful messages.
+- **Logging:** Tracks key events for auditing.
+- **Swagger API Documentation:** Integrated OpenAPI documentation.
 
 ---
 
-## **Project Architecture**
-
-### **Layered Architecture:**
-The project is divided into several key layers to achieve separation of concerns:
-
-1. **Controller Layer:** Handles incoming API requests and forwards them to the service layer.
-    - Example: `AuthController`, `ProductController`
-
-2. **Service Layer:** Contains the business logic of the application.
-    - Example: `AuthService`, `OrderService`
-
-3. **Repository Layer:** Interacts with the database using Spring Data JPA.
-    - Example: `UserRepository`, `ProductRepository`
-
-4. **Entity Layer:** Represents the database tables.
-    - Example: `User`, `Product`
-
-5. **DTO Layer:** Defines the data transfer objects to encapsulate data sent to/from APIs.
-    - Example: `RegisterRequest`, `ProductResponse`
-
-6. **Mapper Layer:** Converts between entities and DTOs using **MapStruct**.
-    - Example: `UserMapper`, `ProductMapper`
+## Technologies Used
+- **Java 23**
+- **Spring Boot** (Web, Security, JPA, Validation)
+- **MapStruct** (Object mapping)
+- **JUnit 5** (Unit testing)
+- **Mockito** (Mocking)
+- **H2 Database** (For testing purposes)
+- **Swagger** (API Documentation)
 
 ---
 
-## **Key Design Patterns**
+## Clean Code & SOLID Design Principles
+This project embraces **clean code** practices and follows the **SOLID** design principles:
 
-### 1. **Factory Method Pattern** (Applied in Payment Processing)
-- The `PaymentServiceFactory` dynamically selects the appropriate `PaymentService` implementation based on the payment method.
-- **Benefits:** Enhances extensibility and isolates changes to specific implementations.
-
-### 2. **Singleton Pattern** (Logger Utility)
-- The `LoggerUtil` class follows the Singleton pattern, ensuring that a single instance is used throughout the application to write logs.
-
-### 3. **Exception Handling (Global Exception Handling)**
-- Centralized exception handling is implemented using the `GlobalExceptionHandler` with specific custom exceptions like `UserNotFoundException` and `PaymentFailedException`.
+1. **Single Responsibility:** Each class is responsible for a single functionality, making it easier to maintain and extend.
+2. **Open/Closed Principle:** The project is designed to be open for extension (e.g., adding new features) but closed for modification.
+3. **Liskov Substitution:** Abstractions are used correctly to allow for substitutable implementations.
+4. **Interface Segregation:** Interfaces are fine-grained and not overloaded with unnecessary methods.
+5. **Dependency Inversion:** High-level modules depend on abstractions rather than concrete implementations.
 
 ---
 
-## **Dependencies and Technologies**
-- **Spring Boot**: Core framework for the backend application.
-- **Spring Data JPA**: Data persistence and interaction with the database.
-- **H2 Database**: In-memory database for development and testing.
-- **MapStruct**: Mapper framework to convert between entities and DTOs.
-- **Spring Security**: Secures the application with authentication and authorization.
-- **OpenAPI/Swagger**: API documentation.
-- **Lombok**: Reduces boilerplate code for POJOs.
+## Design Patterns Used
+- **Factory Pattern:** Implemented in the `PaymentService` to handle multiple payment methods dynamically and extensibly.
+- **Mapper Pattern:** Using **MapStruct** for mapping between DTOs and entities.
+- **Exception Handling Pattern:** Centralized global exception handler (`GlobalExceptionHandler`) for clean and maintainable error handling.
+- **Service Layer Abstraction:** All business logic is encapsulated in the service layer to keep controllers clean and focused on request handling.
 
 ---
 
-## **Setting Up the Project**
-
-### **Prerequisites:**
-- JDK 17 or higher
-- Maven
-
-### **Steps to Run:**
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/Abdl02/eCommerce-Platform.git
-    cd eCommerce-Platform
-    ```
-
-2. Build the project using Maven:
-    ```sh
-    mvn clean install
-    ```
-
-3. Run the application:
-    ```sh
-    mvn spring-boot:run
-    ```
-
-4. Access the API documentation at:
-   [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
-
----
-
-## **Key Endpoints**
-### **Authentication**
-| Endpoint              | HTTP Method | Description                          |
-|----------------------|-------------|--------------------------------------|
-| `/api/auth/register` | POST        | Register a new user                  |
-| `/api/auth/login`    | POST        | Log in a user                        |
-
-### **Product Management**
-| Endpoint             | HTTP Method | Description                          |
-|---------------------|-------------|--------------------------------------|
-| `/api/products`      | GET         | Retrieve all products                |
-| `/api/products`      | POST        | Create a new product                 |
-| `/api/products/{id}` | PUT         | Update an existing product           |
-| `/api/products/{id}` | DELETE      | Delete a product by ID               |
-
-### **Order Management**
-| Endpoint             | HTTP Method | Description                          |
-|---------------------|-------------|--------------------------------------|
-| `/api/orders`        | POST        | Create a new order                   |
-| `/api/orders`        | GET         | Retrieve all orders                  |
-
-### **Cart Management**
-| Endpoint               | HTTP Method | Description                          |
-|-----------------------|-------------|--------------------------------------|
-| `/api/carts/add`      | POST        | Add a product to the cart            |
-| `/api/carts/update`   | PUT         | Update the quantity of a cart item   |
-| `/api/carts/remove`   | DELETE      | Remove a product from the cart       |
-
----
-
-## **Exception Handling**
-The project has centralized exception handling through the `GlobalExceptionHandler`.
-### Key exceptions include:
-- `UserNotFoundException`
-- `ProductNotFoundException`
-- `OutOfStockException`
-
-These exceptions are caught globally, and the API returns meaningful error messages with appropriate HTTP status codes.
-
----
-
-## **Testing**
-Unit and integration tests are written using **JUnit 5** and **Mockito**.
-
-### **Key Test Classes:**
-- `AuthServiceTest`
-- `CartServiceTest`
-- `OrderServiceTest`
-- `PaymentServiceTest`
-- `ProductServiceTest`
-
-To run the tests:
-```sh
-mvn test
+## Project Structure
+```
+├── src/main/java/com/ecommerce_platform
+│   ├── api
+│   │   ├── controller        # API controllers for handling HTTP requests
+│   │   └── dto               # DTOs for requests and responses
+│   ├── infra
+│   │   ├── config            # Application configurations (CORS, Security, Swagger)
+│   │   ├── exception         # Custom exceptions and global handlers
+│   │   ├── mapper            # MapStruct mappers for DTO conversion
+│   │   └── util              # Utility classes (logging, email handling)
+│   ├── repository            # Repositories for database access
+│   ├── service               # Business logic
+│   └── ECommercePlatformApplication.java
+├── src/main/resources
+│   └── application.yml       # Configuration file
+└── pom.xml                   # Maven dependencies
 ```
 
 ---
 
-## **Security**
-The project uses **Spring Security** to secure endpoints, including authentication and role-based access control.
-- `/api/auth/**` is public.
-- Other endpoints require authentication.
+## API Endpoints
+The application exposes the following RESTful endpoints:
 
-## **Future Enhancements**
-- **Payment Gateway Integration:** Integrate third-party payment gateways (e.g., Stripe, PayPal).
-- **Email Notifications:** Implement email confirmation using a proper email server.
-- **Role-based Authorization:** Expand access controls to admin-specific features.
+### **Authentication Endpoints**
+| HTTP Method | Endpoint       | Description                    |
+|-------------|----------------|--------------------------------|
+| POST        | /api/auth/register | Register a new user            |
+| POST        | /api/auth/login    | Authenticate a user            |
 
-## **Contributing**
-1. Fork the repository.
-2. Create a new feature branch.
-3. Submit a pull request.
+### **User Endpoints**
+| HTTP Method | Endpoint              | Description                  |
+|-------------|-----------------------|------------------------------|
+| GET         | /api/users/{userId}   | Get user by ID               |
+| PUT         | /api/users/{userId}   | Update user email            |
+| DELETE      | /api/users/{userId}   | Delete user                  |
+
+### **Product Endpoints**
+| HTTP Method | Endpoint             | Description                   |
+|-------------|----------------------|-------------------------------|
+| POST        | /api/products        | Create a new product          |
+| GET         | /api/products        | Retrieve all products         |
+| PUT         | /api/products/{id}   | Update product by ID          |
+| DELETE      | /api/products/{id}   | Delete product by ID          |
+
+### **Cart Endpoints**
+| HTTP Method | Endpoint                 | Description                  |
+|-------------|--------------------------|------------------------------|
+| POST        | /api/carts/add           | Add a product to cart        |
+| PUT         | /api/carts/update        | Update cart item quantity    |
+| DELETE      | /api/carts/remove        | Remove item from cart        |
+| GET         | /api/carts/items         | Retrieve user's cart items   |
+
+### **Order Endpoints**
+| HTTP Method | Endpoint             | Description                   |
+|-------------|----------------------|-------------------------------|
+| POST        | /api/orders          | Create a new order            |
+| GET         | /api/orders          | Retrieve all orders           |
+
+### **Payment Endpoints**
+| HTTP Method | Endpoint             | Description                   |
+|-------------|----------------------|-------------------------------|
+| POST        | /api/payments/process| Process a payment             |
 
 ---
 
-## **License**
-This project is licensed under the MIT License.
+## Exception Handling
+- Centralized error handling is provided through the `GlobalExceptionHandler`, which handles exceptions like:
+   - `UserNotFoundException`
+   - `ProductNotFoundException`
+   - `OutOfStockException`
+   - `PaymentFailedException`
+
+This ensures that API responses are consistent and user-friendly.
+
+---
+
+## Swagger Integration
+Swagger is integrated using **Springdoc OpenAPI** to automatically generate API documentation.
+- To access the Swagger UI, navigate to:
+```
+http://localhost:8080/swagger-ui/index.html
+```
+- The documentation includes all endpoints, request/response models, and descriptions.
+
+---
+
+## Clean Code Practices
+The following clean code principles were adhered to:
+- Meaningful method and variable names.
+- Classes and methods are small, focused, and well-structured.
+- DTOs and entities are separated to prevent accidental data leaks.
+- Logging is provided for key events using `LoggerUtil`.
+
+---
+
+## Ready for Extension
+This project is built with extensibility in mind:
+- **Payment Methods:** New payment methods can be added by implementing new handlers using the Factory Pattern.
+- **User Roles:** New user roles can be added without changing core logic.
+- **API Expansion:** Easily extendable with new API endpoints.
+
+---
+
+## Best Practices Followed
+- **Dependency Injection:** Using Spring's dependency injection for loose coupling.
+- **Validation:** Input validation using annotations like `@NotNull`, `@Size`, etc.
+- **Layered Architecture:** Separation of concerns between controllers, services, repositories, and configuration.
+- **Unit Testing:** Coverage with **JUnit 5** and **Mockito**.
+- **Caching:** Selective caching in repositories to improve performance.
+
+---
+
+## Running the Application
+To run the application locally:
+1. Clone the repository:
+```
+git clone https://github.com/your-repository/eCommerce-Platform.git
+```
+2. Navigate to the project directory:
+```
+cd eCommerce-Platform
+```
+3. Build the project:
+```
+mvn clean install
+```
+4. Run the application:
+```
+mvn spring-boot:run
+```
+5. Open the Swagger UI to test the APIs.
+
+---
+
+## Future Enhancements
+- Integrate external payment gateways (e.g., Stripe, PayPal).
+- Implement user notifications (email or SMS) for key events.
+- Add advanced search and filtering options for products.
+- Optimize database queries and introduce asynchronous processing where needed.
+
+---
+
+## Contributors
+- **Abdl02**
+
+---
