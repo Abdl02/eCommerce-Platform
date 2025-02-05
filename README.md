@@ -130,7 +130,7 @@ This ensures that API responses are consistent and user-friendly.
 Swagger is integrated using **Springdoc OpenAPI** to automatically generate API documentation.
 - To access the Swagger UI, navigate to:
 ```
-http://localhost:8080/swagger-ui/index.html
+http://localhost:8090/swagger-ui/index.html
 ```
 - The documentation includes all endpoints, request/response models, and descriptions.
 
