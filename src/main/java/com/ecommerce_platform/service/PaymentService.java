@@ -1,24 +1,23 @@
 package com.ecommerce_platform.service;
 
 import com.ecommerce_platform.api.dto.request.PaymentRequest;
+import com.ecommerce_platform.infra.exception.OrderNotFoundException;
+import com.ecommerce_platform.infra.exception.PaymentFailedException;
+import com.ecommerce_platform.infra.util.EmailUtil;
+import com.ecommerce_platform.infra.util.OrderUtil;
 import com.ecommerce_platform.repository.entity.Order;
 import com.ecommerce_platform.repository.entity.OrderStatus;
 import com.ecommerce_platform.repository.entity.Payment;
-import com.ecommerce_platform.infra.exception.OrderNotFoundException;
-import com.ecommerce_platform.infra.exception.PaymentFailedException;
 import com.ecommerce_platform.repository.repos.OrderRepository;
 import com.ecommerce_platform.repository.repos.PaymentRepository;
-import com.ecommerce_platform.infra.util.EmailUtil;
-import com.ecommerce_platform.infra.util.LoggerUtil;
-import com.ecommerce_platform.infra.util.OrderUtil;
 import com.ecommerce_platform.service.payment.PaymentHandler;
 import com.ecommerce_platform.service.payment.PaymentHandlerFactory;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Service
@@ -41,7 +40,7 @@ public class PaymentService {
 
         Payment payment = new Payment(null, order, amount, LocalDateTime.now(), paymentMethod);
 
-        // Dynamically fetch the right payment handler based on the method
+        // Dynamically fetch the right payment handler based on the method (using factory pattern)
         PaymentHandler paymentHandler = paymentHandlerFactory.getHandler(paymentMethod);
         paymentHandler.processPayment(new PaymentRequest(orderId, amount, paymentMethod), payment);
 
