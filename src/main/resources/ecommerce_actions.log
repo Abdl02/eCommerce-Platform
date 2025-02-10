@@ -61,3 +61,5 @@
 2025-02-06T11:36:51.089483800 | Added product ID 1 to cart for user ID 1
 2025-02-06T11:37:07.428170200 | Successfully registered user: john_doe
 2025-02-06T11:37:07.468285100 | Failed registration attempt: Username john_doe already exists
+2025-02-09T19:00:24.978182 | Successfully registered user: abdelrahmani
+2025-02-09T19:00:28.063215900 | Failed registration attempt: Username abdelrahmani already exists
